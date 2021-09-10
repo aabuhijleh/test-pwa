@@ -1,17 +1,17 @@
 const staticCacheName = "static-v1.0.0";
 const dynamicCacheName = "dynamic-v1.0.0";
 const assets = [
-  "/",
-  "/app.js",
-  "/manifest.json",
-  "/images/icons/favicon-16x16-dunplab-manifest-57109.png",
-  "/images/icons/apple-icon-144x144-dunplab-manifest-57109.png",
-  "/images/icons/android-icon-192x192-dunplab-manifest-57109.png",
-  "/images/test.png",
-  "/index.html",
-  "/test1.html",
-  "/test2.html",
-  "/fallback.html",
+  "/test-pwa/test-pwa",
+  "/test-pwa/app.js",
+  "/test-pwa/manifest.json",
+  "/test-pwa/images/icons/favicon-16x16-dunplab-manifest-57109.png",
+  "/test-pwa/images/icons/apple-icon-144x144-dunplab-manifest-57109.png",
+  "/test-pwa/images/icons/android-icon-192x192-dunplab-manifest-57109.png",
+  "/test-pwa/images/test.png",
+  "/test-pwa/index.html",
+  "/test-pwa/test1.html",
+  "/test-pwa/test2.html",
+  "/test-pwa/fallback.html",
 ];
 
 // cache size limit function
@@ -70,7 +70,7 @@ self.addEventListener("fetch", (evt) => {
           });
         });
       } catch (err) {
-        return caches.match("/fallback.html");
+        return caches.match("/test-pwa/fallback.html");
       }
     })()
   );
