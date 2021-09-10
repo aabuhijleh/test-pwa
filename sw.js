@@ -1,6 +1,18 @@
 const staticCacheName = "static-v1.0.0";
 const dynamicCacheName = "dynamic-v1.0.0";
-const assets = ["/"];
+const assets = [
+  "/",
+  "/app.js",
+  "/manifest.json",
+  "/images/icons/favicon-16x16-dunplab-manifest-57109.png",
+  "/images/icons/apple-icon-144x144-dunplab-manifest-57109.png",
+  "/images/icons/android-icon-192x192-dunplab-manifest-57109.png",
+  "/images/test.png",
+  "/index.html",
+  "/test1.html",
+  "/test2.html",
+  "/fallback.html",
+];
 
 // cache size limit function
 const limitCacheSize = (name, size) => {
@@ -15,10 +27,10 @@ const limitCacheSize = (name, size) => {
 
 // install event
 self.addEventListener("install", (evt) => {
-  console.log("service worker installed");
+  // console.log("service worker installed");
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
-      console.log("caching shell assets");
+      // console.log("caching shell assets");
       cache.addAll(assets);
     })
   );
@@ -26,15 +38,40 @@ self.addEventListener("install", (evt) => {
 
 // activate event
 self.addEventListener("activate", (evt) => {
-  console.log("service worker activated");
+  // console.log("service worker activated");
   evt.waitUntil(
     caches.keys().then((keys) => {
-      console.log(keys);
+      // console.log(keys);
       return Promise.all(
         keys
           .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
           .map((key) => caches.delete(key))
       );
     })
+  );
+});
+
+// fetch event
+self.addEventListener("fetch", (evt) => {
+  // console.log("fetch event", evt);
+  evt.respondWith(
+    (async () => {
+      try {
+        // Try to get the response from a cache.
+        const cachedResponse = await caches.match(evt.request);
+        // Return it if we found one.
+        if (cachedResponse) return cachedResponse;
+        // If we didn't find a match in the cache, use the network.
+        return fetch(evt.request).then((fetchRes) => {
+          return caches.open(dynamicCacheName).then((cache) => {
+            cache.put(evt.request.url, fetchRes.clone());
+            limitCacheSize(dynamicCacheName, 15);
+            return fetchRes;
+          });
+        });
+      } catch (err) {
+        return caches.match("/fallback.html");
+      }
+    })()
   );
 });

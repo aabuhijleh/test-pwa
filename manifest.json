@@ -4,8 +4,8 @@
   "lang": "en",
   "description": "pwa test app",
   "start_url": "/",
-  "background_color": "#00aae7",
-  "theme_color": "#00aae7",
+  "background_color": "#fff",
+  "theme_color": "#fff",
   "dir": "ltr",
   "display": "standalone",
   "orientation": "any",
@@ -74,7 +74,13 @@
       "src": "images/icons/favicon-16x16-dunplab-manifest-57109.png",
       "type": "image/png",
       "sizes": "16x16"
+    },
+    {
+      "src": "images/icons/logo512",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "prefer_related_applications": "false"
+  "prefer_related_applications": false
 }
