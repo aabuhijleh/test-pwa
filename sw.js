@@ -1,7 +1,7 @@
 const staticCacheName = "static-v1.0.0";
 const dynamicCacheName = "dynamic-v1.0.0";
 const assets = [
-  "/test-pwa/test-pwa",
+  "/test-pwa/",
   "/test-pwa/app.js",
   "/test-pwa/manifest.json",
   "/test-pwa/images/icons/favicon-16x16-dunplab-manifest-57109.png",
