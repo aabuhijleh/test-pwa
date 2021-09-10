@@ -16,6 +16,6 @@ I also included this script to register the service worker as well
 
 ## Helpful resources
 
-https://www.youtube.com/watch?v=-GlB2HETq74
-https://www.youtube.com/watch?v=sg-Oqb3ZvKg
-https://www.youtube.com/watch?v=W51AKwhAfWA
+- https://www.youtube.com/watch?v=-GlB2HETq74
+- https://www.youtube.com/watch?v=sg-Oqb3ZvKg
+- https://www.youtube.com/watch?v=W51AKwhAfWA
